@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    ports:
+      - 80:80
+    volumes:
+      - data:/var/www/html/data
+      - config:/var/www/html/config
+      - apps:/var/www/html/apps
+    restart: always
+
+  db:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: 
+      MYSQL_DATABASE: electgcs_dolibarr
+      MYSQL_USER: electgcs_dev
+      MYSQL_PASSWORD: 
+    volumes:
+      - db:/var/lib/mysql
+    restart: always
+
+volumes:
+  data:
+  config:
+  apps:
+  db:
